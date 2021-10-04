@@ -1,0 +1,29 @@
+{
+    "name": "person-entity-card",
+    "version": "0.1.0",
+    "descrition": "Person is a plugin which allows users to add Person entity in order to show the location with a beutiful integration.",
+    "keywords": [
+        "home-assistant",
+        "homeassistant",
+        "hass",
+        "lovelace",
+        "custom-cards"
+    ],
+    "main": "./src/person-entity-card.js",
+    "repository": "git@github.com:gerardag/person-entity-card.git",
+    "author": "Gerard Albanell <hello@gerard.fun>",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.15.5",
+        "@babel/plugin-transform-template-literals": "^7.14.5",
+        "@babel/preset-env": "^7.15.6",
+        "babel-loader": "^8.2.2",
+        "url-loader": "^4.1.1",
+        "webpack": "^5.56.1",
+        "webpack-cli": "^4.8.0"
+    },
+    "scripts": {
+        "build": "webpack --mode=production",
+        "watch": "webpack --watch"
+    }
+}
