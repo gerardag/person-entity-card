@@ -13,7 +13,7 @@ Person is a plugin which allows users to add "Person" entity in order to show th
 2. Add a reference to `person-entity-card.js` inside your `lovelace.yaml` or through the raw config editor interface.
   ```yaml
   resources:
-    - url: /local/simple-weather-card-bundle.js?v=0.8.2
+    - url: /local/person-entity-card.js?v=0.1.0
       type: module
   ```
 
@@ -21,12 +21,12 @@ Person is a plugin which allows users to add "Person" entity in order to show th
 1. Move into your `config/www` directory
 2. Download `person-entity-card.js`
   ```console
-  $ wget https://github.com/kalkih/simple-weather-card/releases/download/v0.8.2/simple-weather-card-bundle.js
+  $ wget https://github.com/gerardag/person-entity-card/releases/download/v0.8.2/person-entity-card-bundle.js
   ```
 3. Add a reference to `person-entity-card.js` inside your `ui-lovelace.yaml` or through the raw config editor gui.
   ```yaml
   resources:
-    - url: /local/simple-weather-card-bundle.js?v=0.8.2
+    - url: /local/person-entity-card.js?v=0.1.0
       type: module
   ```
 
