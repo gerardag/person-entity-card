@@ -1,19 +1,22 @@
-import { handleClick } from './handleClick.js';
+import { handleClick } from "./handleClick.js";
 
-const LitElement = window.LitElement
-  || Object.getPrototypeOf(customElements.get("ha-panel-lovelace") || customElements.get("hc-lovelace"))
+const LitElement =
+  window.LitElement ||
+  Object.getPrototypeOf(
+    customElements.get("ha-panel-lovelace") || customElements.get("hc-lovelace")
+  );
 const { html, css } = LitElement.prototype;
 
 class CustomPersonCard extends LitElement {
   static get properties() {
     return {
       hass: {},
-      config: {}
+      config: {},
     };
   }
 
   handleTap(e, entity) {
-    handleClick(this, this._hass, this.config, {action: 'more-info', entity});
+    handleClick(this, this._hass, this.config, { action: "more-info", entity });
   }
 
   setConfig(config) {
@@ -25,7 +28,7 @@ class CustomPersonCard extends LitElement {
 
   _toggle(state) {
     this.hass.callService("homeassistant", "toggle", {
-      entity_id: state.entity_id
+      entity_id: state.entity_id,
     });
   }
 
@@ -35,7 +38,8 @@ class CustomPersonCard extends LitElement {
         background: none;
         border: none;
         box-shadow: none;
-        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',sans-serif;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
         padding-left: 8px;
         padding-right: 8px;
       }
@@ -79,19 +83,25 @@ class CustomPersonCard extends LitElement {
 
   renderPeople(people) {
     const peopleArr = Object.keys(people);
-    const {language, resources} = this.hass;
+    const { language, resources } = this.hass;
     const translations = resources[language];
 
     return html`
-      ${peopleArr.map(person =>
-        people[person].state !== 'home' && people[person].state !== 'unknown'
-          ? html `
-            <div class="grrd-chip" @click="@click=${(e) => this.handleTap(e, person)}">
-              <img src="${people[person].attributes.entity_picture}" />
-              ${people[person].state !== 'home' && people[person].state === 'not_home' ? translations['component.person.state._.not_home'] : people[person].state}
-            </div>
+      ${peopleArr.map((person) =>
+        people[person].state !== "home" && people[person].state !== "unknown"
+          ? html`
+              <div
+                class="grrd-chip"
+                @click="@click=${(e) => this.handleTap(e, person)}"
+              >
+                <img src="${people[person].attributes.entity_picture}" />
+                ${people[person].state !== "home" &&
+                people[person].state === "not_home"
+                  ? translations["component.person.state._.not_home"]
+                  : people[person].state}
+              </div>
             `
-          : ''
+          : ""
       )}
     `;
   }
@@ -99,24 +109,28 @@ class CustomPersonCard extends LitElement {
   render() {
     const hass = this.hass;
     const { entities } = this.config;
-    const regex = new RegExp(`^(${entities.toString().replaceAll(',', '|')})$`);
-    const people = Object
-      .keys(hass.states)
-      .filter(state => state.match(regex) !== null)
-      .reduce((res, key) => Object.assign(res, { [key]: hass.states[key] }), {});
+    const regex = new RegExp(`^(${entities.toString().replaceAll(",", "|")})$`);
+    const people = Object.keys(hass.states)
+      .filter((state) => state.match(regex) !== null)
+      .reduce(
+        (res, key) => Object.assign(res, { [key]: hass.states[key] }),
+        {}
+      );
 
     let areEverybodyAtHome = true;
-    Object.keys(people).map(person => people[person].state !== 'home' ? areEverybodyAtHome = false : '');
+    Object.keys(people).map((person) =>
+      people[person].state !== "home" ? (areEverybodyAtHome = false) : ""
+    );
 
-    return !areEverybodyAtHome ? html`
-      <ha-card>
-        <p class="grrd-person-title"><strong>Familia</strong></p>
-        <div class="grrd-person">
-          ${this.renderPeople(people)}
-        </div>
-      </ha-card>
-    ` : '';
+    return !areEverybodyAtHome
+      ? html`
+          <ha-card>
+            <p class="grrd-person-title"><strong>Familia</strong></p>
+            <div class="grrd-person">${this.renderPeople(people)}</div>
+          </ha-card>
+        `
+      : "";
   }
 }
 
-customElements.define('custom-person-card', CustomPersonCard);
+customElements.define("custom-person-card", CustomPersonCard);
