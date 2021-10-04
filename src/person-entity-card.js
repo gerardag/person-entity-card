@@ -1,7 +1,7 @@
 import { handleClick } from './handleClick.js';
 
 const LitElement = window.LitElement
-  || Object.getPrototypeOf(customElements.get("ha-panel-lovelace") || customElements.get("hc-lovelace"))
+  || Object.getPrototypeOf(customElements.get('ha-panel-lovelace') || customElements.get('hc-lovelace'))
 const { html, css } = LitElement.prototype;
 
 class CustomPersonCard extends LitElement {
@@ -18,13 +18,13 @@ class CustomPersonCard extends LitElement {
 
   setConfig(config) {
     if (!config.entities) {
-      throw new Error("You need to define entities");
+      throw new Error('You need to define entities');
     }
     this.config = config;
   }
 
   _toggle(state) {
-    this.hass.callService("homeassistant", "toggle", {
+    this.hass.callService('homeassistant', 'toggle', {
       entity_id: state.entity_id
     });
   }
@@ -35,24 +35,24 @@ class CustomPersonCard extends LitElement {
         background: none;
         border: none;
         box-shadow: none;
-        font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',sans-serif;
+        font-family: inherit, Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',sans-serif;
         padding-left: 8px;
         padding-right: 8px;
       }
 
-      .grrd-person-title {
+      .person-entity-title {
         font-size: 15px;
       }
 
-      .grrd-person {
+      .person-entity {
         display: flex;
       }
 
-      .grrd-person > .grrd-chip + .grrd-chip {
+      .person-entity > .person-entity-chip + .person-entity-chip {
         margin-left: 1rem;
       }
 
-      .grrd-chip {
+      .person-entity-chip {
         align-items: center;
         background-color: var(--card-background-color);
         border: thin solid var(--primary-color);
@@ -68,7 +68,7 @@ class CustomPersonCard extends LitElement {
         width: auto;
       }
 
-      .grrd-chip > img {
+      .person-entity-chip > img {
         border-radius: 50%;
         height: auto;
         margin-right: 1rem;
@@ -79,15 +79,15 @@ class CustomPersonCard extends LitElement {
 
   renderPeople(people) {
     const peopleArr = Object.keys(people);
-    const {language, resources} = this.hass;
+    const { language, resources } = this.hass;
     const translations = resources[language];
 
     return html`
       ${peopleArr.map(person =>
         people[person].state !== 'home' && people[person].state !== 'unknown'
           ? html `
-            <div class="grrd-chip" @click="@click=${(e) => this.handleTap(e, person)}">
-              <img src="${people[person].attributes.entity_picture}" />
+            <div class='person-entity-chip' @click='@click=${(e) => this.handleTap(e, person)}'>
+              <img src='${people[person].attributes.entity_picture}' />
               ${people[person].state !== 'home' && people[person].state === 'not_home' ? translations['component.person.state._.not_home'] : people[person].state}
             </div>
             `
@@ -105,13 +105,14 @@ class CustomPersonCard extends LitElement {
       .filter(state => state.match(regex) !== null)
       .reduce((res, key) => Object.assign(res, { [key]: hass.states[key] }), {});
 
-    let areEverybodyAtHome = true;
-    Object.keys(people).map(person => people[person].state !== 'home' ? areEverybodyAtHome = false : '');
+    let areEverybodyAtHome = Object.keys(people).map((person) =>
+      people[person].state !== "home" ? (areEverybodyAtHome = false) : ""
+    );
 
     return !areEverybodyAtHome ? html`
       <ha-card>
-        <p class="grrd-person-title"><strong>Familia</strong></p>
-        <div class="grrd-person">
+        ${this.renderTitle}
+        <div class='person-entity'>
           ${this.renderPeople(people)}
         </div>
       </ha-card>
