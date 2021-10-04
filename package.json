@@ -29,7 +29,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": ""
+            "pre-commit": "npm --no-git-tag-version version patch && git add ."
         }
     }
 }
