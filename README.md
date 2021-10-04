@@ -10,7 +10,7 @@ Person is a plugin which allows users to add "Person" entity in order to show th
 
 ### Manual install
 1. Download and copy `person-entity-card.js` from the [latest release](https://github.com/gerardag/person-entity-card/releases/latest) into your `config/www` directory.
-2. Add a reference to `person-entity-card.js` inside your `lovelace.yaml` or through the raw config editor interface.
+2. Add a reference to `person-entity-card.js` inside your `ui-lovelace.yaml` or through the raw config editor interface.
   ```yaml
   resources:
     - url: /local/person-entity-card.js?v=0.1.0
