@@ -38,6 +38,7 @@ Card options
 |------|------|---------|-------------|
 | type | string | **required** | custom:person-entity-card
 | entities | object | **required** | The entity_id from an entity or entities you want to track. |
+| title | string | optional | Small title above the entities. |
 
 ## Example usage
 
