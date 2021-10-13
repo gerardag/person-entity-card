@@ -13,7 +13,7 @@ Person is a plugin which allows users to add "Person" entity in order to show th
 2. Add a reference to `person-entity-card.js` inside your `ui-lovelace.yaml` or through the raw config editor interface.
   ```yaml
   resources:
-    - url: /local/person-entity-card.js?v=0.1.0
+    - url: /hacsfiles/person-entity-card.js?v=0.1.0
       type: module
   ```
 
@@ -26,7 +26,7 @@ Person is a plugin which allows users to add "Person" entity in order to show th
 3. Add a reference to `person-entity-card.js` inside your `ui-lovelace.yaml` or through the raw config editor gui.
   ```yaml
   resources:
-    - url: /local/person-entity-card.js?v=0.1.0
+    - url: /hacsfiles/person-entity-card.js?v=0.1.0
       type: module
   ```
 
