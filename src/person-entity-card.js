@@ -104,7 +104,7 @@ class CustomPersonCard extends LitElement {
           ? html`
               <div
                 class='person-entity-chip'
-                @click='@click=${(e) => this.handleTap(e, person)}'
+                @click=${(e) => this.handleTap(e, person)}
               >
                 <img src='${people[person].attributes.entity_picture}' />
                 ${people[person].state !== 'home' &&
