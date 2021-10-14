@@ -1,2 +1,0 @@
-- name: New release
-  uses: ncipollo/release-action@v1.8.10
