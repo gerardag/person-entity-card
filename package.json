@@ -1,6 +1,6 @@
 {
     "name": "person-entity-card",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "descrition": "Person is a plugin which allows users to add Person entity in order to show the location with a beutiful integration.",
     "keywords": [
         "home-assistant",
@@ -25,6 +25,7 @@
     },
     "scripts": {
         "build": "webpack --mode=production",
-        "watch": "webpack --watch"
+        "watch": "webpack --watch",
+        "create-tag": "git tag -a "
     }
 }
