@@ -1,5 +1,3 @@
 {
-    "name": "Person",
-    "render_readme": true,
-    "filename": "person-entity-card.js"
+    "name": "Person"
 }
