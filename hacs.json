@@ -1,3 +1,5 @@
 {
-    "name": "Person"
+  "name": "Person",
+  "content_in_root": "false",
+  "filename": "person-entity-card-bundle.js"
 }
