@@ -9,7 +9,8 @@
         "lovelace",
         "custom-cards"
     ],
-    "main": "./src/person-entity-card.js",
+    "main": "./src/main.js",
+    "module": "./src/main.js",
     "repository": "git@github.com:gerardag/person-entity-card.git",
     "author": "Gerard Albanell <hello@gerard.fun>",
     "license": "MIT",
