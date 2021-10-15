@@ -1,0 +1,24 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": {
+          "esmodules": true
+        }
+      }
+    ],
+		["minify"]
+  ],
+  "comments": false,
+  "plugins": [
+    [
+      "@babel/plugin-proposal-decorators",
+      { "legacy": true }
+    ],
+    ["@babel/plugin-proposal-class-properties"],
+    ["@babel/plugin-transform-template-literals"],
+    ["iife-wrap"]
+  ]
+}

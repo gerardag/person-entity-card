@@ -1,10 +1,8 @@
-import { handleClick } from './handleClick.js';
+import handleClick from './handleClick';
 
-const LitElement =
-  window.LitElement ||
-  Object.getPrototypeOf(
-    customElements.get('ha-panel-lovelace') || customElements.get('hc-lovelace')
-  );
+const LitElement = window.LitElement || Object.getPrototypeOf(
+  customElements.get('ha-panel-lovelace') || customElements.get('hc-lovelace'),
+);
 const { html, css } = LitElement.prototype;
 
 class CustomPersonCard extends LitElement {
@@ -16,6 +14,7 @@ class CustomPersonCard extends LitElement {
   }
 
   handleTap(e, entity) {
+    // eslint-disable-next-line no-underscore-dangle
     handleClick(this, this._hass, this.config, { action: 'more-info', entity });
   }
 
@@ -26,10 +25,13 @@ class CustomPersonCard extends LitElement {
     this.config = config;
   }
 
+  // eslint-disable-next-line no-underscore-dangle
   _toggle(state) {
+    // eslint-disable-next-line camelcase
     const { entity_id } = state;
 
     this.hass.callService('homeassistant', 'toggle', {
+      // eslint-disable-next-line camelcase
       entity_id,
     });
   }
@@ -83,6 +85,7 @@ class CustomPersonCard extends LitElement {
     `;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   renderTitle(title) {
     if (title !== '') {
       return html`
@@ -99,41 +102,38 @@ class CustomPersonCard extends LitElement {
     const translations = resources[language];
 
     return html`
-      ${peopleArr.map((person) =>
-        people[person].state !== 'home' && people[person].state !== 'unknown'
-          ? html`
+      ${peopleArr.map((person) => (people[person].state !== 'home' && people[person].state !== 'unknown'
+    ? html`
               <div
                 class='person-entity-chip'
                 @click=${(e) => this.handleTap(e, person)}
               >
                 <img src='${people[person].attributes.entity_picture}' />
-                ${people[person].state !== 'home' &&
-                people[person].state === 'not_home'
-                  ? translations['component.person.state._.not_home']
-                  : people[person].state}
+                ${people[person].state !== 'home'
+                && people[person].state === 'not_home'
+      ? translations['component.person.state._.not_home']
+      : people[person].state}
               </div>
             `
-          : ''
-      )}
+    : ''))}
     `;
   }
 
   render() {
-    const hass = this.hass;
+    const { hass } = this;
     const { entities, title } = this.config;
     const regex = new RegExp(`^(${entities.toString().replaceAll(',', '|')})$`);
     const people = Object.keys(hass.states)
       .filter((state) => state.match(regex) !== null)
       .reduce(
         (res, key) => Object.assign(res, { [key]: hass.states[key] }),
-        {}
+        {},
       );
 
     let areEverybodyAtHome = true;
 
-    Object.keys(people).map((person) =>
-      people[person].state !== 'home' ? (areEverybodyAtHome = false) : ''
-    );
+    // eslint-disable-next-line no-return-assign
+    Object.keys(people).map((person) => (people[person].state !== 'home' ? (areEverybodyAtHome = false) : ''));
 
     return !areEverybodyAtHome
       ? html`
