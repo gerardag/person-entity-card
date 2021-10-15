@@ -22,7 +22,7 @@ jobs:
       id: tag_version
       uses: mathieudutour/github-tag-action@v5
       with:
-        append_to_pre_release_tag: false
+        append_to_pre_release_tag: ''
         github_token: ${{ secrets.GITHUB_TOKEN }}
         default_bump: false
         dry_run: true
