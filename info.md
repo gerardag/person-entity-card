@@ -1,7 +1,6 @@
 # Person
 
 [![](https://img.shields.io/github/v/release/gerardag/person-entity-card.svg?style=flat-square)](https://github.com/gerardag/person-entity-card/releases/latest)
-
 ![](https://github.com/gerardag/person-entity-card/actions/workflows/create-release.yml/badge.svg)
 
 ![Preview Image](https://user-images.githubusercontent.com/2340397/137452501-f67632b4-69e2-4367-a183-34ae11cdacf6.png)
