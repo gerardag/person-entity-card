@@ -32,4 +32,6 @@ jobs:
     - name: New release
       uses: ncipollo/release-action@v1.8.10
       with:
-        bodyFile: "dist/person-entity-card-bundle.js"
+        artifacts: 'dist/person-entity-card-bundle.js'
+        owner: "gerardag"
+
