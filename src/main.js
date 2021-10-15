@@ -146,4 +146,4 @@ class CustomPersonCard extends LitElement {
   }
 }
 
-customElements.define('custom-person-card', CustomPersonCard);
+customElements.define('person-entity-card', CustomPersonCard);
