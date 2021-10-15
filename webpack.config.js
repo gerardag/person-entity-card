@@ -4,9 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: "./src/main.js",
   output: {
-    filename: "dist/person-entity-card-bundle.js",
-    path: path.resolve(__dirname, "./"),
-    libraryTarget: 'umd',
+    filename: "person-entity-card-bundle.js",
   },
   optimization: {
     minimize: true,

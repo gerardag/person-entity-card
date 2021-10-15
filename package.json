@@ -25,7 +25,6 @@
     },
     "scripts": {
         "build": "webpack --mode=production",
-        "watch": "webpack --watch",
-        "create-tag": "git tag -a "
+        "watch": "webpack --watch"
     }
 }
