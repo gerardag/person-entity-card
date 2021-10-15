@@ -33,6 +33,9 @@ jobs:
       uses: ncipollo/release-action@v1.8.10
       with:
         artifacts: 'dist/person-entity-card-bundle.js'
-        owner: "gerardag"
+        commit: 'main'
+        allowUpdates: 'true'
+        owner: 'gerardag'
+        repo: 'person-entity-card'
         token: ${{ secrets.GITHUB_TOKEN }}
 
