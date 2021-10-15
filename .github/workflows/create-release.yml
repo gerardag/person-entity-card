@@ -34,4 +34,5 @@ jobs:
       with:
         artifacts: 'dist/person-entity-card-bundle.js'
         owner: "gerardag"
+        token: ${{ secrets.GITHUB_TOKEN }}
 
