@@ -21,6 +21,8 @@
     "@babel/plugin-proposal-decorators": "^7.15.8",
     "@babel/plugin-transform-template-literals": "^7.14.5",
     "@babel/preset-env": "^7.15.6",
+    "@commitlint/cli": "^13.2.1",
+    "@commitlint/config-conventional": "^13.2.0",
     "babel-loader": "^8.2.2",
     "babel-plugin-iife-wrap": "^1.1.0",
     "babel-preset-minify": "^0.5.1",
@@ -36,20 +38,17 @@
     "webpack-cli": "^4.8.0"
   },
   "scripts": {
+    "prepare": "husky install",
     "build": "npm run lint && npm run webpack && npm run babel",
     "webpack": "webpack --mode=production",
     "babel": "babel dist/person-entity-card-bundle.js --out-file dist/person-entity-card-bundle.js",
     "lint": "eslint src/* --ext .js",
     "watch": "webpack --watch",
-    "dev": "webpack --watch",
-    "release": "standard-version -a",
-    "postrelease": "run-s release:tags",
-    "release:tags": "git push --follow-tags origin main"
+    "dev": "webpack --watch"
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
+      "commit-msg": "commitlint -E  HUSKY_GIT_PARAMS"
     }
   }
 }

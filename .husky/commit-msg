@@ -1,0 +1,4 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+eval "$(node -p "require('./husky.js')['commit-msg']")"
