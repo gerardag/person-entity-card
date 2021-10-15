@@ -31,3 +31,5 @@ jobs:
     - run: npm run babel
     - name: New release
       uses: ncipollo/release-action@v1.8.10
+      with:
+        bodyFile: "dist/person-entity-card-bundle.js"
