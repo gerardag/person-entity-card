@@ -18,11 +18,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - id: bump
-      uses: zwaldowski/match-label-action@v1
+    - name: Bump version and push tag
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v5
       with:
-        allowed: feat, docs, fix, build
-    - uses: zwaldowski/semver-release-action@v1
-      with:
-        bump: ${{ steps.bump.outputs.match }}
+        append_to_pre_release_tag: ''
+        default_bump: false
+        create_annotated_tag: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
