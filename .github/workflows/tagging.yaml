@@ -25,4 +25,3 @@ jobs:
         append_to_pre_release_tag: ''
         github_token: ${{ secrets.GITHUB_TOKEN }}
         default_bump: false
-        dry_run: true
