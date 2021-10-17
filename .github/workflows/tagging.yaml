@@ -33,6 +33,7 @@ jobs:
     - name: New release
       uses: ncipollo/release-action@v1.8.10
       with:
+        allowUpdates: true
         artifacts: 'dist/person-entity-card-bundle.js'
         body: ${{ steps.tag_version.outputs.changelog }}
         commit: 'main'
