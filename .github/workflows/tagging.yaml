@@ -21,7 +21,7 @@ jobs:
         default_bump: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - if: ${{ steps.tag_version.outputs.previous_tag === steps.tag_version.outputs.new_tag }}
+    - if: ${{ steps.tag_version.outputs.previous_tag == steps.tag_version.outputs.new_tag }}
       run: exit_with_success
 
     - if: failure()
