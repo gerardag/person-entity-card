@@ -24,7 +24,7 @@ Person is a plugin which allows users to add "Person" entity in order to show th
 1. Move into your `config/www` directory
 2. Download `person-entity-card.js`
   ```console
-  $ wget https://github.com/gerardag/person-entity-card/releases/download/v0.8.2/person-entity-card-bundle.js
+  $ wget https://github.com/gerardag/person-entity-card/releases/download/v0.5.5/person-entity-card-bundle.js
   ```
 3. Add a reference to `person-entity-card.js` inside your `ui-lovelace.yaml` or through the raw config editor gui.
   ```yaml
@@ -50,6 +50,20 @@ You need to add the card into your view `.yaml` file. The code below shows how t
 
 ```yaml
 - type: "custom:person-entity-card"
+  entities:
+    - person.gerard
+    - person.bar
+    - person.foo
+```
+
+### Advanced usage
+
+You can force to show cards although you are at home. To do that you need to add `showAtHome` set to true in card configuration. Also, you can add a title for your cards group:
+
+```yaml
+- type: "custom:person-entity-card"
+  showAtHome: true
+  title: Pin Pals
   entities:
     - person.gerard
     - person.bar
