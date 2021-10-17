@@ -42,7 +42,7 @@ Card options
 | type | string | **required** | custom:person-entity-card
 | entities | object | **required** | The entity_id from an entity or entities you want to track. |
 | title | string | optional | Small title above the entities. |
-| showAtHome | boolean | optional | Default false. You can force show people when they are home. |
+| showAtHome | boolean | false | You can force to show people when they are home. |
 
 ## Example usage
 
