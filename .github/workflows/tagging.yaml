@@ -21,31 +21,25 @@ jobs:
         default_bump: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-  Releasing:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm install
-      - run: npm run lint
-      - run: npm run webpack
-      - run: npm run babel
-      - name: New release
-        uses: ncipollo/release-action@v1.8.10
-        with:
-          artifacts: 'dist/person-entity-card-bundle.js'
-          body: ${{ steps.tag_version.outputs.changelog }}
-          commit: 'main'
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
-          owner: 'gerardag'
-          repo: 'person-entity-card'
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm install
+    - run: npm run lint
+    - run: npm run webpack
+    - run: npm run babel
+    - name: New release
+      uses: ncipollo/release-action@v1.8.10
+      with:
+        artifacts: 'dist/person-entity-card-bundle.js'
+        body: ${{ steps.tag_version.outputs.changelog }}
+        commit: 'main'
+        name: Release ${{ steps.tag_version.outputs.new_tag }}
+        owner: 'gerardag'
+        repo: 'person-entity-card'
+        tag: ${{ steps.tag_version.outputs.new_tag }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 
 
