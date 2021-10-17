@@ -13,11 +13,20 @@ class CustomPersonCard extends LitElement {
     };
   }
 
+  /**
+   * Handle click over custom person-entity-card
+   * @param {Event} e
+   * @param {Object} entity
+   */
   handleTap(e, entity) {
     // eslint-disable-next-line no-underscore-dangle
     handleClick(this, this._hass, this.config, { action: 'more-info', entity });
   }
 
+  /**
+   * Set config to current this.config
+   * @param {Object} config
+   */
   setConfig(config) {
     if (!config.entities) {
       throw new Error('You need to define entities');
@@ -85,6 +94,11 @@ class CustomPersonCard extends LitElement {
     `;
   }
 
+  /**
+   * Render peron-entity-card section title
+   * @param {*} title
+   * @returns
+   */
   // eslint-disable-next-line class-methods-use-this
   renderTitle(title) {
     if (title !== '') {
@@ -96,13 +110,19 @@ class CustomPersonCard extends LitElement {
     return '';
   }
 
+  /**
+   * Render all "person-entity-card" information
+   * @param {html} people
+   * @returns
+   */
   renderPeople(people) {
     const peopleArr = Object.keys(people);
     const { language, resources } = this.hass;
+    const { showAtHome } = this.config;
     const translations = resources[language];
 
     return html`
-      ${peopleArr.map((person) => (people[person].state !== 'home' && people[person].state !== 'unknown'
+      ${peopleArr.map((person) => (showAtHome && people[person].state !== 'unknown'
     ? html`
               <div
                 class='person-entity-chip'
@@ -119,9 +139,13 @@ class CustomPersonCard extends LitElement {
     `;
   }
 
+  /**
+   * Render method for custom card
+   * @returns
+   */
   render() {
     const { hass } = this;
-    const { entities, title } = this.config;
+    const { entities, showAtHome, title } = this.config;
     const regex = new RegExp(`^(${entities.toString().replaceAll(',', '|')})$`);
     const people = Object.keys(hass.states)
       .filter((state) => state.match(regex) !== null)
@@ -132,8 +156,12 @@ class CustomPersonCard extends LitElement {
 
     let areEverybodyAtHome = true;
 
+    if (!showAtHome) {
     // eslint-disable-next-line no-return-assign
-    Object.keys(people).map((person) => (people[person].state !== 'home' ? (areEverybodyAtHome = false) : ''));
+      Object.keys(people).map((person) => (people[person].state !== 'home' ? (areEverybodyAtHome = false) : ''));
+    } else {
+      areEverybodyAtHome = false;
+    }
 
     return !areEverybodyAtHome
       ? html`
