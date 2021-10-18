@@ -118,7 +118,7 @@ class CustomPersonCard extends LitElement {
   renderPeople(people) {
     const peopleArr = Object.keys(people);
     const { language, resources } = this.hass;
-    const { showAtHome } = this.config;
+    const { showAtHome = false } = this.config;
     const translations = resources[language];
 
     return html`
