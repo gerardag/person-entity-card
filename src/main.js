@@ -134,7 +134,7 @@ class CustomPersonCard extends LitElement {
                 ${people[person].state !== 'home'
                 && people[person].state === 'not_home'
       ? translations['component.person.state._.not_home']
-      : people[person].state}
+      : translations['component.person.state._.home']}
               </div>
             `
       : ''))}
