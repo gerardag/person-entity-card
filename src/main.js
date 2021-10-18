@@ -122,8 +122,10 @@ class CustomPersonCard extends LitElement {
     const translations = resources[language];
 
     return html`
-      ${peopleArr.map((person) => (showAtHome && people[person].state !== 'unknown'
-    ? html`
+      ${peopleArr.map((person) => (
+    (people[person].state !== 'home' || showAtHome)
+        && people[person].state !== 'unknown'
+      ? html`
               <div
                 class='person-entity-chip'
                 @click=${(e) => this.handleTap(e, person)}
@@ -135,7 +137,7 @@ class CustomPersonCard extends LitElement {
       : people[person].state}
               </div>
             `
-    : ''))}
+      : ''))}
     `;
   }
 
@@ -156,12 +158,8 @@ class CustomPersonCard extends LitElement {
 
     let areEverybodyAtHome = true;
 
-    if (!showAtHome) {
     // eslint-disable-next-line no-return-assign
-      Object.keys(people).map((person) => (people[person].state !== 'home' ? (areEverybodyAtHome = false) : ''));
-    } else {
-      areEverybodyAtHome = false;
-    }
+    Object.keys(people).map((person) => ((people[person].state !== 'home' || showAtHome) ? (areEverybodyAtHome = false) : ''));
 
     return !areEverybodyAtHome
       ? html`
