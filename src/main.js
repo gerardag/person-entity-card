@@ -131,10 +131,10 @@ class CustomPersonCard extends LitElement {
                 @click=${(e) => this.handleTap(e, person)}
               >
                 <img src='${people[person].attributes.entity_picture}' />
-                ${people[person].state !== 'home'
-                && people[person].state === 'not_home'
-      ? translations['component.person.state._.not_home']
-      : translations['component.person.state._.home']}
+                ${people[person].state === 'home'
+                || people[person].state === 'not_home'
+      ? translations[`component.person.state._.${people[person].state}`]
+      : people[person].state}
               </div>
             `
       : ''))}
