@@ -21,25 +21,16 @@ jobs:
         default_bump: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - if: ${{ steps.tag_version.outputs.previous_tag == steps.tag_version.outputs.new_tag }}
-      run: exit_with_success
-
-    - if: failure()
-      name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - if: failure()
-      run: npm install
-    - if: failure()
-      run: npm run lint
-    - if: failure()
-      run: npm run webpack
-    - if: failure()
-      run: npm run babel
-    - if: failure()
-      name: New release
+    - run: npm install
+    - run: npm run lint
+    - run: npm run webpack
+    - run: npm run babel
+    - name: New release
       uses: ncipollo/release-action@v1.8.10
       with:
         allowUpdates: true
