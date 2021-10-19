@@ -21,6 +21,15 @@ jobs:
         default_bump: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: "Write changelog"
+      run: |
+        CHANGELOG=""
+        if [ -e CHANGELOG.md ]
+        then
+            CHANGELOG=$(cat CHANGELOG.md)
+        fi
+        echo -e "${{steps.tag_version.outputs.changelog}}\n\n${CHANGELOG}" > CHANGELOG.md
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
