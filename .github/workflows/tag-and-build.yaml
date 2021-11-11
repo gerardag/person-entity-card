@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
 
 jobs:
   Tagging:
@@ -20,6 +22,8 @@ jobs:
         append_to_pre_release_tag: ''
         default_bump: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - if: ${{ needs.check-if-there-are-commits.outputs.alive == 'true' }}
 
     - name: "Write changelog"
       run: |

@@ -9,7 +9,9 @@ Person is a plugin which allows users to add "Person" entity in order to show th
 
 ## Install
 
-*This card is available in [HACS](https://github.com/custom-components/hacs) (Home Assistant Community Store)*
+ ### HACS (WIP)
+ 
+~~*This card is available in [HACS](https://github.com/custom-components/hacs) (Home Assistant Community Store)*~~
 
 ### Manual install
 1. Download and copy `person-entity-card.js` from the [latest release](https://github.com/gerardag/person-entity-card/releases/latest) into your `config/www` directory.
