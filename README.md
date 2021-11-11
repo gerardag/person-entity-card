@@ -3,7 +3,7 @@
 [![](https://img.shields.io/github/v/release/gerardag/person-entity-card.svg?style=flat-square)](https://github.com/gerardag/person-entity-card/releases/latest)
 [![Build](https://github.com/gerardag/person-entity-card/actions/workflows/tag-and-build.yaml/badge.svg)](https://github.com/gerardag/person-entity-card/actions/workflows/tag-and-build.yaml)
 
-Person is a plugin which allows users to add "Person" entity in order to show the location with a beutiful integration.
+Person is a plugin which allows users to add "Person" entity in order to show the location with a beautiful integration.
 
 ![Preview Image](https://user-images.githubusercontent.com/2340397/138221325-5b1c4b68-8554-4313-9fc4-a73fd2dbcf6c.jpg)
 
