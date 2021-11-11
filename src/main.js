@@ -181,7 +181,7 @@ class CustomPersonCard extends LitElement {
             <div class='person-entity'>${this.renderPeople(people)}</div>
           </ha-card>
         `
-      : "";
+      : '';
   }
 }
 
