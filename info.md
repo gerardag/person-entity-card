@@ -3,15 +3,15 @@
 [![](https://img.shields.io/github/v/release/gerardag/person-entity-card.svg?style=flat-square)](https://github.com/gerardag/person-entity-card/releases/latest)
 [![Build](https://github.com/gerardag/person-entity-card/actions/workflows/tag-and-build.yaml/badge.svg)](https://github.com/gerardag/person-entity-card/actions/workflows/tag-and-build.yaml)
 
-Person is a plugin which allows users to add "Person" entity in order to show the location with a beutiful integration.
+Person is a plugin which allows users to add "Person" entity in order to show the location with a beautiful integration.
 
 ![Preview Image](https://user-images.githubusercontent.com/2340397/138221325-5b1c4b68-8554-4313-9fc4-a73fd2dbcf6c.jpg)
 
 ## Install
 
-### HACS (WIP)
+ ### HACS (WIP)
 
-~~*This card is available in [HACS](https://github.com/custom-components/hacs) (Home Assistant Community Store)*~~
+*This card is available in [HACS](https://github.com/custom-components/hacs) (Home Assistant Community Store)*
 
 ### Manual install
 1. Download and copy `person-entity-card.js` from the [latest release](https://github.com/gerardag/person-entity-card/releases/latest) into your `config/www` directory.
@@ -44,6 +44,7 @@ Card options
 | type | string | **required** | custom:person-entity-card
 | entities | object | **required** | The entity_id from an entity or entities you want to track. |
 | title | string | optional | Small title above the entities. |
+| centerd | boolean | false | Center person cards into container |
 | showAtHome | boolean | false | You can force to show people when they are home. |
 
 ## Example usage
@@ -64,6 +65,7 @@ You can force to show cards although you are at home. To do that you need to add
 
 ```yaml
 - type: "custom:person-entity-card"
+  centered: true
   showAtHome: true
   title: Pin Pals
   entities:

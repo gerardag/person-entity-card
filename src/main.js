@@ -52,7 +52,7 @@ class CustomPersonCard extends LitElement {
         border: none;
         box-shadow: none;
         font-family: inherit, Inter, -apple-system, BlinkMacSystemFont,
-          'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+          "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
       }
@@ -63,6 +63,14 @@ class CustomPersonCard extends LitElement {
 
       .person-entity {
         display: flex;
+      }
+
+      .person-entity--centered > .person-entity {
+        justify-content: center;
+      }
+
+      .person-entity--centered > .person-entity-title {
+        text-align: center;
       }
 
       .person-entity > .person-entity-chip + .person-entity-chip {
@@ -118,7 +126,7 @@ class CustomPersonCard extends LitElement {
   renderPeople(people) {
     const peopleArr = Object.keys(people);
     const { language, resources } = this.hass;
-    const { showAtHome = false } = this.config;
+    const { showAtHome } = this.config;
     const translations = resources[language];
 
     return html`
@@ -147,7 +155,12 @@ class CustomPersonCard extends LitElement {
    */
   render() {
     const { hass } = this;
-    const { entities, showAtHome, title } = this.config;
+    const {
+      centered = false,
+      entities,
+      showAtHome = false,
+      title,
+    } = this.config;
     const regex = new RegExp(`^(${entities.toString().replaceAll(',', '|')})$`);
     const people = Object.keys(hass.states)
       .filter((state) => state.match(regex) !== null)
@@ -163,12 +176,12 @@ class CustomPersonCard extends LitElement {
 
     return !areEverybodyAtHome
       ? html`
-          <ha-card>
+          <ha-card class=${centered ? 'person-entity--centered' : ''}>
             ${this.renderTitle(title)}
             <div class='person-entity'>${this.renderPeople(people)}</div>
           </ha-card>
         `
-      : '';
+      : "";
   }
 }
 

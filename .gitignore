@@ -3,3 +3,4 @@ package-lock.json
 yarn-lock.json
 /dist/
 ._*
+/.yarn/
