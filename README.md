@@ -44,6 +44,7 @@ Card options
 | type | string | **required** | custom:person-entity-card
 | entities | object | **required** | The entity_id from an entity or entities you want to track. |
 | title | string | optional | Small title above the entities. |
+| centerd | boolean | false | Center person cards into container |
 | showAtHome | boolean | false | You can force to show people when they are home. |
 
 ## Example usage
@@ -64,6 +65,7 @@ You can force to show cards although you are at home. To do that you need to add
 
 ```yaml
 - type: "custom:person-entity-card"
+  centered: true
   showAtHome: true
   title: Pin Pals
   entities:
