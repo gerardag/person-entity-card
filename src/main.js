@@ -94,7 +94,7 @@ class CustomPersonCard extends LitElement {
       }
 
       .person-entity-chip > img {
-        border-radius: 50%;
+        border-radius: 100%;
         height: auto;
         margin-right: 1rem;
         width: 2.3125rem;
