@@ -9,7 +9,7 @@ Person is a plugin which allows users to add "Person" entity in order to show th
 
 ## Install
 
- ### HACS (WIP)
+ ### HACS
 
 *This card is available in [HACS](https://github.com/custom-components/hacs) (Home Assistant Community Store)*
 
