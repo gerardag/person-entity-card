@@ -1,4 +1,5 @@
 {
   "name": "Person",
-  "filename": "person-entity-card-bundle.js"
+  "filename": "person-entity-card-bundle.js",
+  "render_readme": "true"
 }
