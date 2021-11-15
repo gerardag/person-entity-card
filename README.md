@@ -14,21 +14,21 @@ Person is a plugin which allows users to add "Person" entity in order to show th
 *This card is available in [HACS](https://github.com/custom-components/hacs) (Home Assistant Community Store)*
 
 ### Manual install
-1. Download and copy `person-entity-card.js` from the [latest release](https://github.com/gerardag/person-entity-card/releases/latest) into your `config/www` directory.
-2. Add a reference to `person-entity-card.js` inside your `ui-lovelace.yaml` or through the raw config editor interface.
+1. Download and copy `person-entity-card-bundle.js` from the [latest release](https://github.com/gerardag/person-entity-card/releases/latest) into your `config/www` directory.
+2. Add a reference to `person-entity-card-bundle.js` inside your `ui-lovelace.yaml` or through the raw config editor interface.
   ```yaml
   resources:
-    - url: /hacsfiles/person-entity-card/person-entity-card-bundle.js?v=0.7.2
+    - url: /hacsfiles/person-entity-card/person-entity-card-bundle.js
       type: module
   ```
 
 ### CLI install
 1. Move into your `config/www` directory
-2. Download `person-entity-card.js`
+2. Download `person-entity-card-bundle.js`
   ```console
   $ wget https://github.com/gerardag/person-entity-card/releases/download/v0.5.5/person-entity-card-bundle.js
   ```
-3. Add a reference to `person-entity-card.js` inside your `ui-lovelace.yaml` or through the raw config editor gui.
+3. Add a reference to `person-entity-card-bundle.js` inside your `ui-lovelace.yaml` or through the raw config editor gui.
   ```yaml
   resources:
     - url: /hacsfiles/person-entity-card/person-entity-card-bundle.js
