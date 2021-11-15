@@ -63,6 +63,7 @@ class CustomPersonCard extends LitElement {
 
       .person-entity {
         display: flex;
+        gap: 1rem;
       }
 
       .person-entity--centered > .person-entity {
@@ -71,10 +72,6 @@ class CustomPersonCard extends LitElement {
 
       .person-entity--centered > .person-entity-title {
         text-align: center;
-      }
-
-      .person-entity > .person-entity-chip + .person-entity-chip {
-        margin-left: 1rem;
       }
 
       .person-entity-chip {
