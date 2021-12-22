@@ -2,10 +2,13 @@ name: Tag and build
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'src/**'
+
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - 'src/**'
 
 jobs:
   Tagging:
