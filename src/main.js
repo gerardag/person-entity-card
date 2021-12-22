@@ -96,6 +96,12 @@ class CustomPersonCard extends LitElement {
         margin-right: 1rem;
         width: 2.3125rem;
       }
+
+      .person-entity-chip > span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     `;
   }
 
@@ -136,10 +142,11 @@ class CustomPersonCard extends LitElement {
                 @click=${(e) => this.handleTap(e, person)}
               >
                 <img src='${people[person].attributes.entity_picture}' />
-                ${people[person].state === 'home'
+                <span>${people[person].state === 'home'
                 || people[person].state === 'not_home'
       ? translations[`component.person.state._.${people[person].state}`]
       : people[person].state}
+                </span>
               </div>
             `
       : ''))}
