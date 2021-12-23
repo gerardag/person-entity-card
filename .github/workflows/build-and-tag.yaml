@@ -3,13 +3,6 @@ name: Tag and build
 on:
   push:
 
-# on:
-#   push:
-#     branches:
-#       - main
-#     paths:
-#       - 'src/**'
-
 jobs:
   Tagging:
 
