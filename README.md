@@ -46,6 +46,7 @@ Card options
 | title | string | optional | Small title above the entities. |
 | centerd | boolean | false | Center person cards into container |
 | showAtHome | boolean | false | You can force to show people when they are home. |
+| disableAction | boolean | false | You can disable tap_action for desired entties |
 
 ## Example usage
 
@@ -67,6 +68,7 @@ You can force to show cards although you are at home. To do that you need to add
 - type: "custom:person-entity-card"
   centered: true
   showAtHome: true
+  disableAction: true
   title: Pin Pals
   entities:
     - person.gerard
