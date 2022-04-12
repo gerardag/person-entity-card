@@ -1,8 +1,9 @@
 import handleClick from './handleClick';
 
-const LitElement = window.LitElement || Object.getPrototypeOf(
-  customElements.get('ha-panel-lovelace') || customElements.get('hc-lovelace'),
-);
+const LitElement = window.LitElement
+  || Object.getPrototypeOf(
+    customElements.get('ha-panel-lovelace') || customElements.get('hc-lovelace'),
+  );
 const { html, css } = LitElement.prototype;
 
 class CustomPersonCard extends LitElement {
@@ -20,7 +21,13 @@ class CustomPersonCard extends LitElement {
    */
   handleTap(e, entity, disableAction) {
     // eslint-disable-next-line no-underscore-dangle
-    if (!disableAction) handleClick(this, this._hass, this.config, { action: 'more-info', entity });
+    if (!disableAction) {
+      // eslint-disable-next-line no-underscore-dangle
+      handleClick(this, this._hass, this.config, {
+        action: 'more-info',
+        entity,
+      });
+    }
   }
 
   /**
@@ -90,6 +97,10 @@ class CustomPersonCard extends LitElement {
         width: auto;
       }
 
+      .person-entity-chip.no-action {
+        cursor: default;
+      }
+
       .person-entity-chip > img {
         border-radius: 100%;
         height: auto;
@@ -137,7 +148,7 @@ class CustomPersonCard extends LitElement {
         && people[person].state !== 'unknown'
     ? html`
               <div
-                class="person-entity-chip"
+                class="person-entity-chip${disableAction ? ' no-action' : ''}"
                 @click=${(e) => this.handleTap(e, person, disableAction)}
               >
                 <img src="${people[person].attributes.entity_picture}" />
