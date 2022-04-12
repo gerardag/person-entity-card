@@ -1,8 +1,9 @@
 import handleClick from './handleClick';
 
-const LitElement = window.LitElement || Object.getPrototypeOf(
-  customElements.get('ha-panel-lovelace') || customElements.get('hc-lovelace'),
-);
+const LitElement = window.LitElement
+  || Object.getPrototypeOf(
+    customElements.get('ha-panel-lovelace') || customElements.get('hc-lovelace'),
+  );
 const { html, css } = LitElement.prototype;
 
 class CustomPersonCard extends LitElement {
@@ -18,9 +19,15 @@ class CustomPersonCard extends LitElement {
    * @param {Event} e
    * @param {Object} entity
    */
-  handleTap(e, entity) {
+  handleTap(e, entity, disableAction) {
     // eslint-disable-next-line no-underscore-dangle
-    handleClick(this, this._hass, this.config, { action: 'more-info', entity });
+    if (!disableAction) {
+      // eslint-disable-next-line no-underscore-dangle
+      handleClick(this, this._hass, this.config, {
+        action: 'more-info',
+        entity,
+      });
+    }
   }
 
   /**
@@ -90,6 +97,10 @@ class CustomPersonCard extends LitElement {
         width: auto;
       }
 
+      .person-entity-chip.no-action {
+        cursor: default;
+      }
+
       .person-entity-chip > img {
         border-radius: 100%;
         height: auto;
@@ -114,7 +125,7 @@ class CustomPersonCard extends LitElement {
   renderTitle(title) {
     if (title !== '') {
       return html`
-        <p class='person-entity-title'><strong>${title}</strong></p>
+        <p class="person-entity-title"><strong>${title}</strong></p>
       `;
     }
 
@@ -129,27 +140,29 @@ class CustomPersonCard extends LitElement {
   renderPeople(people) {
     const peopleArr = Object.keys(people);
     const { language, resources } = this.hass;
-    const { showAtHome } = this.config;
+    const { showAtHome, disableAction } = this.config;
     const translations = resources[language];
 
     return html`
-      ${peopleArr.map((person) => (
-    (people[person].state !== 'home' || showAtHome)
+      ${peopleArr.map((person) => ((people[person].state !== 'home' || showAtHome)
         && people[person].state !== 'unknown'
-      ? html`
+    ? html`
               <div
-                class='person-entity-chip'
-                @click=${(e) => this.handleTap(e, person)}
+                class="person-entity-chip${disableAction ? ' no-action' : ''}"
+                @click=${(e) => this.handleTap(e, person, disableAction)}
               >
-                <img src='${people[person].attributes.entity_picture}' />
-                <span>${people[person].state === 'home'
-                || people[person].state === 'not_home'
-      ? translations[`component.person.state._.${people[person].state}`]
+                <img src="${people[person].attributes.entity_picture}" />
+                <span
+                  >${people[person].state === 'home'
+                  || people[person].state === 'not_home'
+      ? translations[
+        `component.person.state._.${people[person].state}`
+      ]
       : people[person].state}
                 </span>
               </div>
             `
-      : ''))}
+    : ''))}
     `;
   }
 
@@ -176,13 +189,15 @@ class CustomPersonCard extends LitElement {
     let areEverybodyAtHome = true;
 
     // eslint-disable-next-line no-return-assign
-    Object.keys(people).map((person) => ((people[person].state !== 'home' || showAtHome) ? (areEverybodyAtHome = false) : ''));
+    Object.keys(people).map((person) => (people[person].state !== 'home' || showAtHome
+      ? (areEverybodyAtHome = false)
+      : ''));
 
     return !areEverybodyAtHome
       ? html`
           <ha-card class=${centered ? 'person-entity--centered' : ''}>
             ${this.renderTitle(title)}
-            <div class='person-entity'>${this.renderPeople(people)}</div>
+            <div class="person-entity">${this.renderPeople(people)}</div>
           </ha-card>
         `
       : '';
