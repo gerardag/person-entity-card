@@ -1,0 +1,19 @@
+{
+  "entity": "Entidad",
+  "persons": {
+    "title": "Personas (Requerido)",
+    "picker_label": "Persona"
+  },
+  "config": {
+    "centered": {
+      "title": "Centrado",
+      "on": "Centrado encendido",
+      "off": "Centrado apagado"
+    },
+    "showAtHome": {
+      "title": "Mostrar personas en casa",
+      "on": "Mostrar personas en casa encendido",
+      "off": "Mostrar personas en casa apagado"
+    }
+  }
+}
