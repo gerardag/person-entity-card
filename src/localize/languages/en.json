@@ -1,0 +1,19 @@
+{
+  "entity": "Entity",
+  "persons": {
+    "title": "Persons (Required)",
+    "picker_label": "Person"
+  },
+  "config": {
+    "centered": {
+      "title": "Centered",
+      "on": "Centered on",
+      "off": "Centered off"
+    },
+    "showAtHome": {
+      "title": "Show people at home",
+      "on": "Show people at home on",
+      "off": "Show people at home off"
+    }
+  }
+}
