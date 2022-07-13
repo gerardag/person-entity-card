@@ -1,7 +1,10 @@
-import {LitElement, html, css} from 'lit';
 import handleClick from './handleClick';
 
-const config = require('./config-card')
+const LitElement = window.LitElement
+  || Object.getPrototypeOf(
+    customElements.get('ha-panel-lovelace') || customElements.get('hc-lovelace'),
+  );
+const { html, css } = LitElement.prototype;
 
 class CustomPersonCard extends LitElement {
   static get properties() {
@@ -129,15 +132,6 @@ class CustomPersonCard extends LitElement {
     return '';
   }
 
-  initials(person) {
-    let name = person.attributes.friendly_name;
-    let rgx = new RegExp(/(\p{L}{1})\p{L}+/, 'gu');
-
-    let initials = [...name.matchAll(rgx)] || [];
-
-    return ((initials.shift()?.[1] || '') + (initials.pop()?.[1] || '')).toUpperCase();
-  }
-
   /**
    * Render all "person-entity-card" information
    * @param {html} people
@@ -148,22 +142,28 @@ class CustomPersonCard extends LitElement {
     const { language, resources } = this.hass;
     const { showAtHome, disableAction } = this.config;
     const translations = resources[language];
+
     return html`
-      ${peopleArr.map((person) => (
-        (people[person].state !== 'home' || showAtHome) && people[person].state !== 'unknown' ? html`
-            <div class="person-entity-chip${disableAction ? ' no-action' : ''}"
-                 @click=${(e) => this.handleTap(e, person, disableAction)}>
-              ${people[person].attributes.entity_picture ?
-                html`<img src="${people[person].attributes.entity_picture}"/>` : this.initials(people[person])
-              }
-              <span>
-              ${people[person].state === 'home' || people[person].state === 'not_home'
-                ? translations[`component.person.state._.${people[person].state}`]
-                : people[person].state}
+      ${peopleArr.map((person) => ((people[person].state !== 'home' || showAtHome)
+        && people[person].state !== 'unknown'
+    ? html`
+              <div
+                class="person-entity-chip${disableAction ? ' no-action' : ''}"
+                @click=${(e) => this.handleTap(e, person, disableAction)}
+              >
+                <img src="${people[person].attributes.entity_picture}" />
+                <span
+                  >${people[person].state === 'home'
+                  || people[person].state === 'not_home'
+      ? translations[
+        `component.person.state._.${people[person].state}`
+      ]
+      : people[person].state}
                 </span>
-            </div>`
-          : ''
-      ))}`;
+              </div>
+            `
+    : ''))}
+    `;
   }
 
   /**
@@ -178,26 +178,29 @@ class CustomPersonCard extends LitElement {
       showAtHome = false,
       title,
     } = this.config;
-
-    const people = entities
-      .filter((person) => hass.states[person] !== null)
-      .reduce((res, key) => Object.assign(res, { [key]: hass.states[key] }), {});
+    const regex = new RegExp(`^(${entities.toString().replaceAll(',', '|')})$`);
+    const people = Object.keys(hass.states)
+      .filter((state) => state.match(regex) !== null)
+      .reduce(
+        (res, key) => Object.assign(res, { [key]: hass.states[key] }),
+        {},
+      );
 
     let areEverybodyAtHome = true;
 
     // eslint-disable-next-line no-return-assign
-    Object.keys(people)
-      .map((person) => (people[person].state !== 'home' || showAtHome ? (areEverybodyAtHome = false) : ''));
+    Object.keys(people).map((person) => (people[person].state !== 'home' || showAtHome
+      ? (areEverybodyAtHome = false)
+      : ''));
 
-    return !areEverybodyAtHome ? html`
-      <ha-card class=${centered ? 'person-entity--centered' : ''}>
-        ${this.renderTitle(title)}
-        <div class="person-entity">${this.renderPeople(people)}</div>
-      </ha-card>` : '';
-  }
-
-  static getConfigElement() {
-    return document.createElement('person-entity-card-config');
+    return !areEverybodyAtHome
+      ? html`
+          <ha-card class=${centered ? 'person-entity--centered' : ''}>
+            ${this.renderTitle(title)}
+            <div class="person-entity">${this.renderPeople(people)}</div>
+          </ha-card>
+        `
+      : '';
   }
 }
 

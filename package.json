@@ -14,11 +14,6 @@
   "repository": "git@github.com:gerardag/person-entity-card.git",
   "author": "Gerard Albanell <gerardalbanell@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "custom-card-helpers": "^1.6.4",
-    "ha-template": "^1.0.5",
-    "lit": "^2.0.0"
-  },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
