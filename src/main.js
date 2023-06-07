@@ -156,7 +156,7 @@ class CustomPersonCard extends LitElement {
                   >${people[person].state === 'home'
                   || people[person].state === 'not_home'
       ? translations[
-        `component.person.state._.${people[person].state}`
+        `component.component.person.entity_component._.state.${people[person].state}`
       ]
       : people[person].state}
                 </span>
