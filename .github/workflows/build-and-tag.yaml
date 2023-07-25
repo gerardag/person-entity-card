@@ -45,7 +45,7 @@ jobs:
         body: ${{ steps.tag_version.outputs.changelog }}
         commit: 'main'
         name: Release ${{ steps.tag_version.outputs.new_tag }}
-        owner: 'gerardag'
+        owner: 'GuyKh'
         repo: 'person-entity-card'
         tag: ${{ steps.tag_version.outputs.new_tag }}
         token: ${{ secrets.GITHUB_TOKEN }}
